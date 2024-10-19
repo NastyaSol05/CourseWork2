@@ -1,0 +1,20 @@
+[
+  {
+    "name": "Python разработчик (на проект)",
+    "url": "https://hh.ru/vacancy/108616452",
+    "salary": 7000000,
+    "requirement": "Опыт разработки на <highlighttext>Python</highlighttext>: уверенное владение языком <highlighttext>Python</highlighttext> и его экосистемой. - Опыт работы с Django: глубокое знание фреймворка Django, включая..."
+  },
+  {
+    "name": "Marketing Technologist / Менеджер по развитию и аналитике маркетинговых технологий",
+    "url": "https://hh.ru/vacancy/108793228",
+    "salary": 1000000,
+    "requirement": "Exposure to analytics tools such as <highlighttext>Python</highlighttext>, Power BI, and Tableau. Expert in Microsoft Office suite of tools including Excel..."
+  },
+  {
+    "name": "Python Developer",
+    "url": "<https://hh.ru/vacancy/123456>",
+    "salary": 100000,
+    "requirement": "Требования: опыт работы от 3 лет..."
+  }
+]
