@@ -3,6 +3,8 @@ from typing import Any
 
 class Vacancy:
 
+    """ Класс для работы с вакансиями HeadHunter """
+
     __slots__ = ["name", "alternate_url", "salary", "requirement"]
 
     def __init__(self, name: str, alternate_url: str, salary: Any, requirement: str) -> None:

@@ -3,6 +3,7 @@ from typing import Any
 
 
 class BaseVacancy(ABC):
+    """ Abstract base class for vacancy operations. """
 
     @classmethod
     @abstractmethod
