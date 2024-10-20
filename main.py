@@ -19,12 +19,13 @@ def user_interaction() -> Any:
         print(sorted_vacancies[i])
         json_saver.add_vacancy(sorted_vacancies[i])
 
-    print("\nФильтр по ключевому слову:")
-    for vacancy in vacancy_list:
-        for word in filter_words:
-            if word in vacancy.requirement:
-                print(vacancy)
-                continue
+    if filter_words:
+        print("\nФильтр по ключевому слову:")
+        for vacancy in vacancy_list:
+            for word in filter_words:
+                if word in vacancy.requirement:
+                    print(vacancy)
+                    continue
 
 
 if __name__ == "__main__":
