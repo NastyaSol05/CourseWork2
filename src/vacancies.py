@@ -3,7 +3,7 @@ from typing import Any
 
 class Vacancy:
 
-    __slots__ = ['name', 'alternate_url', 'salary', 'requirement']
+    __slots__ = ["name", "alternate_url", "salary", "requirement"]
 
     def __init__(self, name: str, alternate_url: str, salary: Any, requirement: str) -> None:
         self.name = name
@@ -34,10 +34,8 @@ class Vacancy:
             new_salary = salary
         return new_salary
 
-
     def __gt__(self, other: Any) -> Any:
         return self.salary > other.salary
-
 
     @classmethod
     def cast_to_object_list(cls, hh_vacancies: dict) -> list:

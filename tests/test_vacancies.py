@@ -34,7 +34,7 @@ def test_vacancy_one(vacancy_one: Vacancy) -> None:
 
 def test_compare_salary(vacancy_one: Vacancy, vacancy_two: Vacancy) -> None:
     result = vacancy_one > vacancy_two
-    assert result == True
+    assert result
 
 
 def test_cast_to_object_list(vacancy_one: Vacancy) -> None:

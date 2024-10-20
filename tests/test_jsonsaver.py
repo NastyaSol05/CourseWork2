@@ -1,9 +1,10 @@
 import json
 from typing import Any
-from unittest.mock import mock_open, patch, call
+from unittest.mock import mock_open, patch
 
 from src.jsonsaver import JSONSaver
 from src.vacancies import Vacancy
+
 
 @patch("builtins.open", new_callable=mock_open, read_data=json.dumps([]))
 def test_add_vacancy(mock_file: Any) -> None:
@@ -17,7 +18,12 @@ def test_add_vacancy(mock_file: Any) -> None:
     written_data = "".join(call[0][0] for call in write_calls)
 
     expected_data = [
-        {"name": "Software Engineer", "alternate_url": "http://example.com", "salary": 100000, "requirement": "Python, Django"}
+        {
+            "name": "Software Engineer",
+            "alternate_url": "http://example.com",
+            "salary": 100000,
+            "requirement": "Python, Django",
+        }
     ]
     expected_json = json.dumps(expected_data, ensure_ascii=False, indent=2)
 

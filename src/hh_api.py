@@ -7,8 +7,8 @@ from src.baseapi import BaseAPI
 
 class HhAPI(BaseAPI):
     """
-        Класс для работы с API HeadHunter
-        Класс BaseAPI является родительским классом
+    Класс для работы с API HeadHunter
+    Класс BaseAPI является родительским классом
     """
 
     def __init__(self) -> None:
@@ -24,10 +24,10 @@ class HhAPI(BaseAPI):
 
         response.raise_for_status()
         if response.status_code != 200:
-            raise 'Не удалось подключиться к HeadHunter'
+            raise "Не удалось подключиться к HeadHunter"  # type: ignore
         vacancies = response.json()["items"]
         return vacancies
 
     @property
-    def url(self):
+    def url(self) -> str:
         return self.__url

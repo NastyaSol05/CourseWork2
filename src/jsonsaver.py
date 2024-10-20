@@ -1,7 +1,6 @@
 import json
 import os.path
-
-from dulwich.porcelain import path_to_tree_path
+from typing import Any
 
 from src.basevacancy import BaseVacancy
 from src.vacancies import Vacancy
@@ -18,11 +17,11 @@ class JSONSaver(BaseVacancy):
                 result = json.load(f)
 
             obj = {
-                    "name": vacancy.name,
-                    "alternate_url": vacancy.alternate_url,
-                    "salary": vacancy.salary,
-                    "requirement": vacancy.requirement,
-                }
+                "name": vacancy.name,
+                "alternate_url": vacancy.alternate_url,
+                "salary": vacancy.salary,
+                "requirement": vacancy.requirement,
+            }
 
             if obj not in result:
                 result.append(obj)
@@ -30,7 +29,7 @@ class JSONSaver(BaseVacancy):
                     json.dump(result, f, ensure_ascii=False, indent=2)
 
     @classmethod
-    def get_vacancy(cls) -> None:
+    def get_vacancy(cls) -> Any:
         with open(cls.__path, "r") as f:
             return json.load(f)
 
@@ -56,5 +55,5 @@ class JSONSaver(BaseVacancy):
                 json.dump(result, f, ensure_ascii=False, indent=2)
 
     @property
-    def path(self):
+    def path(self) -> str:
         return self.__path
