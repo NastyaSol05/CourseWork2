@@ -3,8 +3,7 @@ from typing import Any
 
 
 class BaseAPI(ABC):
-
-    """ Абстрактный класс для работы с API """
+    """Абстрактный класс для работы с API"""
 
     @abstractmethod
     def get_vacancies(self, query: Any) -> None:

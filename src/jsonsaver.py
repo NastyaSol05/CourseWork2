@@ -7,8 +7,7 @@ from src.vacancies import Vacancy
 
 
 class JSONSaver(BaseVacancy):
-
-    """  Класс для работы с JSON-файлом """
+    """Класс для работы с JSON-файлом"""
 
     __path: str = os.path.abspath("data/vacancies.json")
 

@@ -2,8 +2,7 @@ from typing import Any
 
 
 class Vacancy:
-
-    """ Класс для работы с вакансиями HeadHunter """
+    """Класс для работы с вакансиями HeadHunter"""
 
     __slots__ = ["name", "alternate_url", "salary", "requirement"]
 
