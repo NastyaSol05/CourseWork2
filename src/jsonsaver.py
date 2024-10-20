@@ -1,34 +1,38 @@
 import json
 import os.path
 
+from dulwich.porcelain import path_to_tree_path
+
 from src.basevacancy import BaseVacancy
 from src.vacancies import Vacancy
 
 
 class JSONSaver(BaseVacancy):
 
-    path: str = os.path.abspath("data/vacancies.json")
+    __path: str = os.path.abspath("data/vacancies.json")
 
     @classmethod
     def add_vacancy(cls, vacancy: Vacancy) -> None:
         if issubclass(type(vacancy), Vacancy):
-            with open(cls.path, "r") as f:
+            with open(cls.__path, "r") as f:
                 result = json.load(f)
 
-            result.append(
-                {
+            obj = {
                     "name": vacancy.name,
-                    "url": vacancy.url,
+                    "alternate_url": vacancy.alternate_url,
                     "salary": vacancy.salary,
                     "requirement": vacancy.requirement,
                 }
-            )
-            with open(cls.path, "w", encoding="utf-8") as f:
-                json.dump(result, f, ensure_ascii=False, indent=2)
+
+            if obj not in result:
+                result.append(obj)
+                with open(cls.__path, "w", encoding="utf-8") as f:
+                    json.dump(result, f, ensure_ascii=False, indent=2)
 
     @classmethod
     def get_vacancy(cls) -> None:
-        pass
+        with open(cls.__path, "r") as f:
+            return json.load(f)
 
     @classmethod
     def save_vacancy(cls) -> None:
@@ -37,16 +41,20 @@ class JSONSaver(BaseVacancy):
     @classmethod
     def delete_vacancy(cls, vacancy: Vacancy) -> None:
         if issubclass(type(vacancy), Vacancy):
-            with open(cls.path, "r") as f:
+            with open(cls.__path, "r") as f:
                 result = json.load(f)
 
             result.remove(
                 {
                     "name": vacancy.name,
-                    "url": vacancy.url,
+                    "alternate_url": vacancy.alternate_url,
                     "salary": vacancy.salary,
                     "requirement": vacancy.requirement,
                 }
             )
-            with open(cls.path, "w", encoding="utf-8") as f:
+            with open(cls.__path, "w", encoding="utf-8") as f:
                 json.dump(result, f, ensure_ascii=False, indent=2)
+
+    @property
+    def path(self):
+        return self.__path

@@ -27,13 +27,14 @@ def vacancy_two() -> Vacancy:
 
 def test_vacancy_one(vacancy_one: Vacancy) -> None:
     assert vacancy_one.name == "Python Developer"
-    assert vacancy_one.url == "<https://hh.ru/vacancy/123456>"
+    assert vacancy_one.alternate_url == "<https://hh.ru/vacancy/123456>"
     assert vacancy_one.salary == 100_000
     assert vacancy_one.requirement == "Требования: опыт работы от 3 лет..."
 
 
 def test_compare_salary(vacancy_one: Vacancy, vacancy_two: Vacancy) -> None:
-    assert Vacancy.compare_salary(vacancy_one, vacancy_two) == vacancy_one
+    result = vacancy_one > vacancy_two
+    assert result == True
 
 
 def test_cast_to_object_list(vacancy_one: Vacancy) -> None:
@@ -59,6 +60,6 @@ def test_cast_to_object_list(vacancy_one: Vacancy) -> None:
     result = Vacancy.cast_to_object_list(hh_vacancies)  # type: ignore
     for r, e in zip(result, expected_vacancies):
         assert r.name == e.name
-        assert r.url == e.url
+        assert r.alternate_url == e.alternate_url
         assert r.salary == e.salary
         assert r.requirement == e.requirement

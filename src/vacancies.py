@@ -3,9 +3,11 @@ from typing import Any
 
 class Vacancy:
 
+    __slots__ = ['name', 'alternate_url', 'salary', 'requirement']
+
     def __init__(self, name: str, alternate_url: str, salary: Any, requirement: str) -> None:
         self.name = name
-        self.url = alternate_url
+        self.alternate_url = alternate_url
         self.salary = Vacancy.__parse_salary(salary)
         if requirement is not None:
             self.requirement = requirement
@@ -15,7 +17,7 @@ class Vacancy:
     def __str__(self) -> str:
         return (
             f"Вакансия: {self.name}, зарплата по вакансии: {self.salary}, "
-            f"ссылка на вакансию: {self.url}\n\t{self.requirement}"
+            f"ссылка на вакансию: {self.alternate_url}\n\t{self.requirement}"
         )
 
     @staticmethod
@@ -32,12 +34,10 @@ class Vacancy:
             new_salary = salary
         return new_salary
 
-    @staticmethod
-    def compare_salary(vacancy_one: Any, vacancy_two: Any) -> Any:
-        if vacancy_one.salary > vacancy_two.salary:
-            return vacancy_one
-        else:
-            return vacancy_two
+
+    def __gt__(self, other: Any) -> Any:
+        return self.salary > other.salary
+
 
     @classmethod
     def cast_to_object_list(cls, hh_vacancies: dict) -> list:

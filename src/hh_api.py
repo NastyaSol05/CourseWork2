@@ -6,20 +6,28 @@ from src.baseapi import BaseAPI
 
 
 class HhAPI(BaseAPI):
-
-    url = "https://api.hh.ru/vacancies"
+    """
+        Класс для работы с API HeadHunter
+        Класс BaseAPI является родительским классом
+    """
 
     def __init__(self) -> None:
-        self.url = "https://api.hh.ru/vacancies"
-        self.params = {"text": "", "page": 0, "per_page": 100}
+        self.__url = "https://api.hh.ru/vacancies"
+        self.__params = {"text": "", "page": 0, "per_page": 100}
 
     def get_vacancies(self, query: Any = None) -> Any:
         if query:
-            self.params["text"] = query
-            response = requests.get(url=self.url, params=self.params)  # type: ignore
+            self.__params["text"] = query
+            response = requests.get(url=self.__url, params=self.__params)  # type: ignore
         else:
-            response = requests.get(self.url)
+            response = requests.get(self.__url)
 
         response.raise_for_status()
+        if response.status_code != 200:
+            raise 'Не удалось подключиться к HeadHunter'
         vacancies = response.json()["items"]
         return vacancies
+
+    @property
+    def url(self):
+        return self.__url
